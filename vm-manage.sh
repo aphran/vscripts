@@ -40,10 +40,10 @@ vmdir=/vms
 
 _existsordie ${vmdir}
 
-_exists ${fmasters}
+_exists ${fmasters} 2>>/dev/null
 [ 0 -eq ${?} ] && masters=$( cat ${fmasters} ) || masters=""
 
-_exists ${fworkers}
+_exists ${fworkers} 2>>/dev/null
 [ 0 -eq ${?} ] && workers=$( cat ${fworkers} ) || workers=""
 
 qemubin=$( which qemu-system-x86_64 )
@@ -97,7 +97,7 @@ function _vmstop () {
 
 function up () {
     # check that NO VMs are running
-    [ -n "$( st 2>/dev/null )" ] && exit 4
+    [ -n "$( st 2>>/dev/null )" ] && exit 4
 
     echo -e "\nStarting all VMs:\n"
     # bring up master VMs
@@ -112,7 +112,7 @@ function up () {
 
 function dn () {
     # check that some VMs are running   
-    [ -z "$( st 2>/dev/null )" ] && exit 5
+    [ -z "$( st 2>>/dev/null )" ] && exit 5
 
     echo -e "\nStopping all VMs:\n"
     # bring down master and worker VMs
