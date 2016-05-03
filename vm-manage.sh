@@ -81,7 +81,7 @@ function _vmstart () {
         #sleep 1s
     else
         echo "[error]  VM not found: ${vmpath}" >&2
-    fi  
+    fi
 }
 
 function _vmstop () {
@@ -111,7 +111,7 @@ function up () {
 }
 
 function dn () {
-    # check that some VMs are running   
+    # check that some VMs are running
     [ -z "$( st 2>>/dev/null )" ] && exit 5
 
     echo -e "\nStopping all VMs:\n"
