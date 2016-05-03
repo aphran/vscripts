@@ -133,6 +133,14 @@ function st () {
     fi
 }
 
+function k9 () {
+    # check that some VMs are running
+    [ -z "$( st 2>>/dev/null )" ] && exit 5
+
+    echo -e "\nSending kill -9 signal to all VMs:\n"
+    pkill -u root -9 qemu-system
+}
+
 function h () {
     cat << EOF
 
@@ -146,6 +154,7 @@ Where <action> can be:
   up  -  start all vms
   dn  -  stop all vms
   st  -  show vm info
+  k9  -  kill all vms (brutally)
 
 EOF
 
