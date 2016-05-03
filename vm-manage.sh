@@ -30,7 +30,7 @@ function _existsordie () {
 
 wd=$( dirname $( realpath ${0} ) )
 self=$( basename ${0} )
-action=${1:-start}
+action=${1:-st}
 host=$(hostname)
 
 invdir=${wd}/inventory
@@ -166,5 +166,3 @@ fi
 
 # execute action
 ${action}
-
-#EOF
